@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DF 목록</title>
+    <style>
+        body {
+            background-size: cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            height: 100vh;
+            margin: 0;
+            background-color: rgba(216, 218, 245, 0.8); /* 배경색 추가 */
+        }
+
+        header {
+            width: 100%;
+            background-color: rgb(255, 255, 255);
+            padding: 10px 0;
+            position: fixed;
+            top: 0;
+            z-index: 999;
+            text-align: center;
+            font-size: 20px;
+            border-bottom: 2px solid rgb(145, 145, 255); /* 파란색 2픽셀 두께의 실선 밑줄 */
+        }
+
+        header nav ul {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        header nav ul li {
+            display: inline-block;
+            margin-right: 20px;
+        }
+
+        header nav ul li a {
+            text-decoration: none;
+            color: #333; /* 링크 색상 추가 */
+        }
+
+        table {
+            width: 80%;
+            margin: 70px auto 20px; /* 글로벌 메뉴와 충돌하지 않도록 margin-top 조정 */
+            border-collapse: collapse;
+            background-color: #fff;
+        }
+
+        th,
+        td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        tr:hover {
+            background-color: #f2f2f2;
+        }
+
+        button {
+            padding: 5px 10px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            border-radius: 3px;
+            margin-top: 20px;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        input[type="text"] {
+            width: 100%; /* 입력창 전체 너비로 확장 */
+            padding: 8px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+            text-align: center; /* 입력 내용 가운데 정렬 */
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <nav class="global-menu">
+            <ul>
+                <li><a href="/">홈</a></li>
+                <li><a href="/list">영상</a></li>
+                <li><a href="/post">글쓰기</a></li>
+                <li><a href="/post_list">커뮤니티</a></li>
+            </ul>
+        </nav>
+    </header>
+    <table>
+        <tr>
+            <th>비디오 이름</th>
+            <th>비디오 URL</th>
+            <th>가짜 여부</th>
+            <th>태그</th>
+        </tr>
+        {% for row in result_table %}
+        <tr>
+            <td>{{ row.vid_name }}</td>
+            <td>{{ row.vid_url }}</td>
+            <td>{{ row.vid_fake }}</td>
+            <td>{{ row.vid_tag }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <h2>추론 결과</h2>
+    <table>
+        <tr>
+            <th>Thumbnail</th>
+            <th>TALL++</th>
+            <th>이미지_XAI</th>
+            <th>사운드_XAI</th>
+        </tr>
+        {% for row in result_table %}
+        <tr>
+            <td><img src="../static/{{ row.vid_name}}/thumbnail.jpg" alt="Thumbnail" width="200" height="200"></td>
+            <td><img src="../static/{{ row.vid_name}}/tall_graph.png" alt="TALL++" width="200" height="200"></td>
+            <td><img src="../static/{{ row.vid_name}}/image_xai.jpg" alt="image_xai" width="200" height="200"></td>
+            <td><img src="../static/{{ row.vid_name}}/Audio_xai.png" alt="sound_xai" width="200" height="200"></td>
+        </tr>
+        {% endfor %}
+    </table>
+    <h2>태그 수정</h2>
+    <table>
+        <tr>
+            <th>태그 수정</th>
+            <th>제출</th>
+        </tr>
+        {% for row in result_table %}
+        <form action="/update?vid_name={{row.vid_name}}" method="post">
+            <tr>
+                <td><input type="text" name="vid_tag"></td>
+                <td><input type="submit" value="제출"></td>
+            </tr>
+        </form>
+        {% endfor %}
+    </table>
+    <button onclick="location.href='/list'">목록</button>
+</body>
+
+</html>

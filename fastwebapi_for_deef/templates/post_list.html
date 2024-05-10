@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>포스트 목록</title>
+    <style>
+        body {
+            background-color: rgba(216, 218, 245, 0.8);
+            background-size: cover;
+            display: flex;
+            justify-content: center;    
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        header {
+            width: 100%;
+            background-color: rgb(255, 255, 255);
+            padding: 10px 0;
+            position: fixed;
+            top: 0;
+            z-index: 999;
+            text-align: center;
+            font-size: 20px;
+            border-bottom: 2px solid rgb(145, 145, 255); /* 파란색 2픽셀 두께의 실선 밑줄 */
+        }
+        
+        header .global-menu ul,
+        header .local-menu ul {
+            display: inline-block;
+            padding: 0;
+            margin: 0;
+            list-style: none;
+        }
+        
+        header .global-menu ul li,
+        header .local-menu ul li {
+            display: inline-block;
+            margin-right: 20px;
+            text-decoration: none; /* 밑줄 제거 */
+        }
+        
+        .global-menu ul li a,
+        .local-menu ul li a {
+            text-decoration: none; /* 링크 텍스트의 밑줄 제거 */
+            color: #000; /* 글자 색상 검은색으로 설정 */
+        }
+        
+        table {
+            width: 80%;
+            margin: 0 auto;
+            border-collapse: collapse;
+            background-color: #fff;
+        }
+
+        th,
+        td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        tr:hover {
+            background-color: #f2f2f2;
+        }
+
+        button {
+            padding: 5px 10px;
+            background-color: #007bff; /* 버튼 배경색 변경 */
+            color: #fff; /* 버튼 글자 색상 변경 */
+            border: none;
+            cursor: pointer;
+            border-radius: 3px;
+            margin-top: 20px;
+        }
+
+        button:hover {
+            background-color: #0056b3; /* 버튼 호버시 배경색 변경 */
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <nav class="global-menu">
+            <ul>
+                <li><a href="/">홈</a></li>
+                <li><a href="/list">영상</a></li>
+                <li><a href="/post">글쓰기</a></li>
+                <li><a href="/post_list">커뮤니티</a></li>
+            </ul>
+        </nav>
+    </header>
+    <table>
+        <thead>
+            <tr>
+                <th>post number</th>
+                <th>post name</th>
+                <th>writer</th>
+                <th>게시글 보기</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in post_list %}
+            <tr>
+                <td>{{ row.post_number }}</td>
+                <td>{{ row.post_name }}</td>
+                <td>{{ row.writer }}</td>
+                <td><button onclick="location.href='/post_detail?post_number={{ row.post_number }}'">상세정보</button></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+</body>
+</html>

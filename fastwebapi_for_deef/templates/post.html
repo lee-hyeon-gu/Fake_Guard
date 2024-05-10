@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>포스트 페이지</title>
+    <style>
+        body {
+            background-size: cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: rgba(216, 218, 245, 0.8); /* 배경색 추가 */
+        }
+        header {
+            width: 100%;
+            background-color: rgb(255, 255, 255);
+            padding: 10px 0;
+            position: fixed;
+            top: 0;
+            z-index: 999;
+            text-align: center;
+            font-size: 20px;
+            border-bottom: 2px solid rgb(145, 145, 255); /* 파란색 2픽셀 두께의 실선 밑줄 */
+        }
+        header nav ul {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        header nav ul li {
+            display: inline-block;
+            margin-right: 20px;
+        }
+        header nav ul li a {
+            text-decoration: none;
+            color: #333; /* 링크 색상 추가 */
+        }
+        .container {
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-top: 70px; /* 글로벌 메뉴와 겹치지 않도록 조정 */
+            width: 80%; /* 컨테이너 너비를 조정합니다. */
+            display: flex;
+            flex-direction: column; /* 세로 방향으로 아이템을 배치합니다. */
+            align-items: center; /* 가운데 정렬합니다. */
+        }
+        .container form {
+            width: 100%; /* 폼 너비를 조정합니다. */
+        }
+        .container form p {
+            margin: 10px 0; /* 단락 간격을 조정합니다. */
+            display: flex;
+            align-items: center; /* 가운데 정렬합니다. */
+        }
+        .container form p label {
+            width: 100px; /* 라벨의 너비를 조정합니다. */
+            margin-right: 10px; /* 라벨과 입력 필드 사이의 간격을 조정합니다. */
+            text-align: center; /* 라벨을 가운데 정렬합니다. */
+        }
+        .container form p span {
+            width: 10px; /* 공백 너비를 조정합니다. */
+        }
+        input[type="text"],
+        input[type="password"] {
+            width: calc(50% - 60px); /* 입력 필드 너비를 조정합니다. */
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        input[type="password"] {
+            height: 40px; /* 비밀번호 입력 필드의 높이를 조정합니다. */
+        }
+        input[type="text"]#post_name,
+        input[type="text"]#post_text {
+            width: calc(100% - 110px); /* 포스트 제목과 게시글 입력 필드의 너비를 조정합니다. */
+        }
+        input[type="text"]#post_text {
+            height: 200px; /* 게시글 입력 필드의 높이를 조정합니다. */
+        }
+        input[type="submit"] {
+            width: calc(50% - 60px); /* 제출 버튼의 너비를 조정합니다. */
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: dodgerblue;
+            color: white;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover {
+            background-color: deepskyblue;
+        }
+        .button-group {
+            display: flex;
+            justify-content: space-between; /* 버튼을 가운데 정렬하고 사이의 공간을 최대한 확보합니다. */
+            width: 100%;
+            margin-top: 20px; /* 버튼과 입력 필드 사이의 간격을 조정합니다. */
+        }
+        .button-group input[type="submit"] {
+            width: 48%; /* 버튼의 너비를 조정합니다. */
+            font-size: 14px; /* 버튼의 글꼴 크기를 조정합니다. */
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="/">홈</a></li>
+                <li><a href="/list">목록</a></li>
+                <li><a href="/post_list">커뮤니티</a></li>
+            </ul>
+        </nav>
+    </header>
+    <div class="container">
+        <form action="/post_result" method="post">  
+            <p>
+                <label for="post_name">게시자:</label>
+                <span></span> <!-- 공백을 추가합니다. -->
+                <input type="text" id="writer" name="writer">
+                <label for="writer_pass">비밀번호:</label>
+                <input type="password" id="writer_pass" name="writer_pass">
+            </p>
+
+            <p>
+                <label for="post_name">포스트 제목:</label>
+                <input type="text" id="post_name" name="post_name">
+            </p>
+            <p>
+                <label for="post_text">게시글:</label>
+                <input type="text" id="post_text" name="post_text" style="height: 200px;"> <!-- 높이를 조정합니다. -->
+            </p>
+            
+            <div class="button-group">
+                <input type="submit" value="등록"> <!-- 수정된 위치 -->
+                <input type="submit" value="취소">
+            </div>
+        </form>
+    </div>
+</body>
+</html>
