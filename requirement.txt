@@ -1,0 +1,22 @@
+python > 3.8.3
+
+einops
+fvcore
+timm==0.4.12
+torch==1.13.1
+torchaudio==0.13.1
+torchvision==0.14.1
+uvicorn[standard]
+fasapi
+SQLAlchemy
+pymysql
+scikit-learn
+six
+av
+pandas
+matplotlib
+gradcam
+mtcnn
+tensorflow
+seaborn
+torchaudio
