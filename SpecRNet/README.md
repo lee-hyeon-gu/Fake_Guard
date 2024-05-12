@@ -1,4 +1,5 @@
 # Audio Part
+
 WaveFake 논문을 기반으로 하여 KSS데이터로 사전학습된 Parallel WaveGAN 모델을 이용해
 Fake 데이터를 GAN, TTS로 생성하였으며 이를 1:1로 학습함
 
@@ -11,6 +12,9 @@ LFCC를 생성하여 학습함
 개별 훈련 모델이 대부분 더 뛰어난 결과를 보임
 
 # Train
+
+Train_Spec.ipynb에서 pytorch의 Dataset을 사용한 기본적인 학습을 참고가능 
+
 Model 폴더 내의 train_model.py 는 WaveFake 모델의 Train 과 trainer를 모두 사용하도록 변형됨
 
 # Pre-trained Model
