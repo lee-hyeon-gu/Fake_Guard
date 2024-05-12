@@ -18,10 +18,10 @@ import argparse
 from pytorch_grad_cam import GradCAM, ScoreCAM, XGradCAM
 from pytorch_grad_cam.utils.model_targets import ClassifierOutputTarget
 
-from SpecRNet.lfcc import LFCC
-from SpecRNet.model.model import SpecRNet
+from lfcc import LFCC
+from model.model import SpecRNet
 
-from SpecRNet.model import config
+from model import config
 
 def slicing(waveform, samplerate):
     duration = samplerate * 4
@@ -220,8 +220,8 @@ def save_LFCC_long(input, sr, idx):
 
 def LFCC_pred(input):
 
-    GAN_ckpt = torch.load('/home/alpaco/REAL_LAST/GAN_model.pth')
-    TTS_ckpt = torch.load('/home/alpaco/REAL_LAST/TTS_model.pth')
+    GAN_ckpt = torch.load('./GAN_model.pth')
+    TTS_ckpt = torch.load('./TTS_model.pth')
     
     specrnet_config = config.get_specrnet_config(input_channels=1)
 
