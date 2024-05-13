@@ -1,0 +1,13 @@
+DIRECTORY:
+  dataset: /home/alpaco/REAL_LAST/effnet/data/scrshoot/crop
+  #{DATA_DIR}/test/images
+  sample_submission_path : /home/alpaco/REAL_LAST/effnet/te_list/sample_submission.csv
+  #{DATA_DIR}/test/sample_submission.csv
+
+TRAIN:
+  train_serial: '20240428_182740' #@@@
+  batch_size: 1 #32
+
+PREDICT:
+  seed: 42
+  gpu: 1
